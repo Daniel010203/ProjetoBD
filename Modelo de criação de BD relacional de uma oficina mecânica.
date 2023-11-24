@@ -1,0 +1,54 @@
+-- Criação da tabela de clientes
+CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
+);
+
+-- Inserção de clientes fixos
+INSERT INTO Clientes (ClienteID, Nome) VALUES
+(1, 'João'),
+(2, 'José'),
+(3, 'Manuel'),
+(4, 'Daniel'),
+(5, 'Carlos'),
+(6, 'Flávio');
+
+-- Criação da tabela de veículos
+CREATE TABLE Veiculos (
+    VeiculoID INT PRIMARY KEY,
+    ClienteID INT,
+    Modelo VARCHAR(50) NOT NULL,
+    Ano INT,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);
+
+-- Criação da tabela de peças automotivas
+CREATE TABLE PecasAutomotivas (
+    PecaID INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
+);
+
+-- Criação da tabela de funcionários
+CREATE TABLE Funcionarios (
+    FuncionarioID INT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
+);
+
+-- Criação da tabela de peças utilizadas
+CREATE TABLE PecasUtilizadas (
+    PecaID INT,
+    FuncionarioID INT,
+    Quantidade INT,
+    FOREIGN KEY (PecaID) REFERENCES PecasAutomotivas(PecaID),
+    FOREIGN KEY (FuncionarioID) REFERENCES Funcionarios(FuncionarioID),
+    PRIMARY KEY (PecaID, FuncionarioID)
+);
+
+-- Criação da tabela de pagamentos
+CREATE TABLE Pagamentos (
+    PagamentoID INT PRIMARY KEY,
+    ClienteID INT,
+    Valor DECIMAL(10, 2) NOT NULL,
+    MetodoPagamento VARCHAR(20) NOT NULL,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ClienteID)
+);

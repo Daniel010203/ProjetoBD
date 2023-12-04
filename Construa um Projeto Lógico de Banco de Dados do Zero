@@ -1,0 +1,66 @@
+Cliente:
+NoIDCliente(PK), Nome, `TeleTelefone, Email.
+Veículo:
+Atributos:IDVeiculo(PK), Modelo, Ano, Placa, IDCliente(FK).
+Serviço:
+Atributos: IDServico(PK), Descricao, Preco.
+OrdemServico:
+Atributos: IDOrdemServico(PK), DataEntrada, `DatDataSaida, IDVeiculo(FK), IDServico(FK).
+
+#Script SQL para Criação do BD:
+CREATE TABLE Cliente (
+    IDCliente INT PRIMARY KEY,
+    Nome VARCHAR(255) NOT NULL,
+    Telefone VARCHAR(15),
+    Email VARCHAR(255)
+);
+
+CREATE TABLE Veiculo (
+    IDVeiculo INT PRIMARY KEY,
+    Modelo VARCHAR(255) NOT NULL,
+    Ano INT,
+    Placa VARCHAR(10),
+    IDCliente INT,
+    FOREIGN KEY (IDCliente) REFERENCES Cliente(IDCliente)
+);
+
+CREATE TABLE Servico (
+    IDServico INT PRIMARY KEY,
+    Descricao VARCHAR(255) NOT NULL,
+    Preco DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE OrdemServico (
+    IDOrdemServico INT PRIMARY KEY,
+    DataEntrada DATE,
+    DataSaida DATE,
+    IDVeiculo INT,
+    IDServico INT,
+    FOREIGN KEY (IDVeiculo) REFERENCES Veiculo(IDVeiculo),
+    FOREIGN KEY (IDServico) REFERENCES Servico(IDServico)
+);
+
+#Consultas SQL:
+SELECT * FROM Cliente;
+
+SELECT * FROM Veiculo WHERE Ano > 2010;
+
+SELECT IDVeiculo, Modelo, Ano, CONCAT(Nome, ' - ', Email) AS ClienteInfo
+FROM Veiculo
+JOIN Cliente ON Veiculo.IDCliente = Cliente.IDCliente;
+
+SELECT * FROM Servico ORDER BY Preco DESC;
+
+SELECT IDCliente, COUNT(IDVeiculo) AS NumVeiculos
+FROM Veiculo
+GROUP BY IDCliente
+HAVING COUNT(IDVeiculo) > 1;
+
+
+Perguntas que podem ser respondidas pelas consultas:
+Quais são os clientes cadastrados na oficina?
+Quais veículos têm mais de 10 anos?
+Quais são os detalhes dos veículos e seus proprietários?
+Listar os serviços em ordem decrescente de preço.
+Quantos veículos cada cliente possui? (Para clientes com mais de um veículo)
+Quais são os detalhes dos clientes, veículos e serviços associados a cada pedido de serviço?

@@ -1,0 +1,23 @@
+USE cadastro;
+
+INSERT INTO pessoas VALUES
+  (DEFAULT, 'Godofredo', '1988-10-01', 'M', 78.5, 1.83, 'Brasil'),
+  (DEFAULT, 'Maria', '1977-09-01', 'F', 78.5, 1.83, 'Espanha'),
+  (DEFAULT, 'Luiz', '1988-10-01', 'M', 78.5, 1.83, 'Peru'),
+  (DEFAULT, 'Carlos', '1988-10-01', 'M', 78.5, 1.83, 'Japão');
+
+SELECT * FROM pessoas;
+EXPLICAÇÃO DO CÓDIGO:
+USE cadastro;: Este comando seleciona o banco de dados chamado "cadastro", indicando que todas as operações subsequentes serão realizadas nesse banco de dados.
+
+INSERT INTO pessoas VALUES ...: Este comando insere registros na tabela "pessoas". Os valores para cada registro são fornecidos entre os parênteses e separados por vírgulas. Os valores correspondem às colunas da tabela "pessoas" na ordem em que foram definidas.
+
+(DEFAULT, 'Godofredo', '1988-10-01', 'M', 78.5, 1.83, 'Brasil'): Insere um registro com valores específicos para cada coluna.
+(DEFAULT, 'Maria', '1977-09-01', 'F', 78.5, 1.83, 'Espanha'): Insere outro registro com valores diferentes.
+(DEFAULT, 'Luiz', '1988-10-01', 'M', 78.5, 1.83, 'Peru'): Insere mais um registro.
+(DEFAULT, 'Carlos', '1988-10-01', 'M', 78.5, 1.83, 'Japão'): E mais um registro.
+O valor DEFAULT no primeiro campo "id" indica que o sistema deve atribuir automaticamente um valor único para essa coluna devido à configuração AUTO_INCREMENT.
+
+SELECT * FROM pessoas;: Este comando realiza uma consulta na tabela "pessoas" para selecionar todos os registros e colunas presentes nela. O * é um curinga que significa "todas as colunas". A consulta retorna os registros que foram inseridos na tabela.
+
+Em resumo, o código cria um banco de dados chamado "cadastro", insere registros na tabela "pessoas" desse banco de dados e, em seguida, faz uma consulta para exibir todos os registros dessa tabela.

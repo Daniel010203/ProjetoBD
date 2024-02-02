@@ -1,0 +1,37 @@
+USE cadastro;
+
+CREATE TABLE pessoas (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(30) NOT NULL,
+    nascimento DATE,
+    sexo ENUM('M', 'F'),
+    peso DECIMAL(5,2),
+    altura DECIMAL(3,2),
+    nacionalidade VARCHAR(20) DEFAULT 'Brasil',
+    PRIMARY KEY (id)
+) DEFAULT CHARSET = utf8mb4;
+
+EXPLICAÇÃO DO SCRIPT SQL:
+USE cadastro;: Este comando é utilizado para selecionar o banco de dados no qual você deseja executar os comandos subsequentes. Neste caso, ele seleciona o banco de dados chamado "cadastro".
+
+CREATE TABLE pessoas (: Inicia a declaração para criar uma nova tabela chamada "pessoas".
+
+id INT NOT NULL AUTO_INCREMENT,: Define um campo chamado "id" como um número inteiro (INT), que não pode ser nulo (NOT NULL), e será autoincrementado (AUTO_INCREMENT). Isso significa que o banco de dados irá atribuir automaticamente valores únicos crescentes sempre que um novo registro for inserido.
+
+nome VARCHAR(30) NOT NULL,: Define um campo chamado "nome" como uma string de no máximo 30 caracteres (VARCHAR(30)), que não pode ser nulo.
+
+nascimento DATE,: Define um campo chamado "nascimento" como do tipo data (DATE).
+
+sexo ENUM('M', 'F'),: Define um campo chamado "sexo" como um tipo enumerado (ENUM) com valores permitidos 'M' ou 'F'. Isso limita os valores que podem ser inseridos nesse campo.
+
+peso DECIMAL(5,2),: Define um campo chamado "peso" como um número decimal com até 5 dígitos no total, dos quais 2 são após o ponto decimal (DECIMAL(5,2)).
+
+altura DECIMAL(3,2),: Define um campo chamado "altura" como um número decimal com até 3 dígitos no total, dos quais 2 são após o ponto decimal (DECIMAL(3,2)).
+
+nacionalidade VARCHAR(20) DEFAULT 'Brasil',: Define um campo chamado "nacionalidade" como uma string de até 20 caracteres (VARCHAR(20)) com um valor padrão ('Brasil').
+
+PRIMARY KEY (id): Define a chave primária da tabela como o campo "id", garantindo que cada registro tenha um valor único para esse campo.
+
+) DEFAULT CHARSET = utf8mb4;: Encerra a declaração da tabela e define o conjunto de caracteres padrão como utf8mb4. Isso é comum para suportar caracteres especiais em várias línguas.
+
+Em resumo, o script cria uma tabela chamada "pessoas" com diversos campos para armazenar informações sobre pessoas, como nome, data de nascimento, sexo, peso, altura e nacionalidade. O campo "id" é designado como chave primária para garantir a unicidade dos registros.
